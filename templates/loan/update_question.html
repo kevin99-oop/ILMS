@@ -77,7 +77,10 @@
   <form method="post" autocomplete="off" enctype="multipart/form-data">
       {% csrf_token %}
         <label for="course_name">Question By Client</label>
-      {% render_field questionForm.description class="form-control"%}
+        
+      {%render_field questionForm.description class="form-control "%}
+      
+      <br>
       <label for="course_name">Revert Back</label>
       <input type="text" name="admin_comment" id="admin_comment" class="form-control" placeholder="Enter Your Reply To Client">
     <input type="submit" value="Update">
