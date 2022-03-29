@@ -21,6 +21,35 @@
     .row {
       margin: 100px;
     }
+    @media screen and (max-height: 736px) {
+ #google_translate_element {
+    width: 80px;
+    margin-top: 10px;
+}
+.goog-te-combo{
+    width: 64px;
+    border: outset #0000;
+    font-size: 13px;
+
+  }
+  .goog-te-gadget .goog-te-combo {
+    margin-left: -4px;
+  }
+  .goog-logo-link{
+    text-indent: -9999px;  
+    overflow: hidden; 
+    font-size: 0px!important;
+  }
+  .small, small {
+    font-size: 57%;
+    font-weight: 800;
+}
+.form
+{
+  margin-left: 22px;
+    margin-right: 22px;
+}
+}
   </style>
 </head>
 
@@ -31,7 +60,7 @@
     <h1 class="h3 mb-0 text-gray-800">Loan Holder Record <span class="text-primary">Approved</span></h1>
     <span id='date-time' class="small"></span>
     </div>    
-    <table class="table table-hover table-bordered" id="dev-table">
+    <table class="table table-hover table-bordered table-responsive-sm" id="dev-table">
       <thead class="table-info">
         <tr class="text-center">
         <th>Sr No.</th>

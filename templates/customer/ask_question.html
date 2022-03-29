@@ -3,7 +3,33 @@
 {% load static %}
 
 {% block content %}
+<style>
+  .p-5 {
+    padding: 1rem!important;
+}
 
+@media screen and (max-height: 736px) {
+ #google_translate_element {
+    width: 80px;
+    margin-top: 10px;
+}
+.goog-te-combo{
+    width: 64px;
+    border: outset #0000;
+    font-size: 13px;
+
+  }
+  .goog-te-gadget .goog-te-combo {
+    margin-left: -4px;
+  }
+  .goog-logo-link{
+    text-indent: -9999px;  
+    overflow: hidden; 
+    font-size: 0px!important;
+  }
+ 
+ }
+</style>
 
  <!-- Begin Page Content -->
  <div class="container-fluid">
@@ -36,7 +62,7 @@
                 <label for="course_name">Problem</label>
                 {% render_field questionForm.description class="form-control" placeholder="Describe your problem here" %}
               </div>
-              <button type="submit" class="btn btn-primary">Send To Admin</button>
+              <button type="submit" class="btn btn-primary col-12">Send To Admin</button>
             </form>
             <hr>
           </div>

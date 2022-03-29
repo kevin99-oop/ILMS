@@ -24,7 +24,35 @@
     <!-- Date Time Picker CSS -->
   
   </head>
+<style>
+    @media screen and (max-height: 736px) {
+  .small, small {
+    font-size: 57%;
+    font-weight: 800;
+}
+}
+ @media screen and (max-height: 736px) {
+ #google_translate_element {
+    width: 80px;
+    margin-top: 10px;
+}
+.goog-te-combo{
+    width: 64px;
+    border: outset #0000;
+    font-size: 13px;
 
+  }
+  .goog-te-gadget .goog-te-combo {
+    margin-left: -4px;
+  }
+  .goog-logo-link{
+    text-indent: -9999px;  
+    overflow: hidden; 
+    font-size: 0px!important;
+  }
+ 
+ }
+</style>
 <body id="page-top">
 
   <!-- Page Wrapper -->
@@ -107,8 +135,8 @@
       <li class="nav-item">
         <a class="nav-link">
           <i class="fas fa-language"></i>
-          <span >Language</span>
-          <div id="google_translate_element" class="btn btn-success"></div>
+          <span>Language</span>
+          <div id="google_translate_element" class="btn btn-success mx-auto"></div>
         </a>
       </li>
     
@@ -127,7 +155,7 @@
   
 
         {% block content %}
-
+        
         {% endblock content %}
     
   

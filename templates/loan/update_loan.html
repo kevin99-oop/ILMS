@@ -45,6 +45,40 @@
     .left_area{
       margin-top:8px;
     }
+    .form{
+      margin-left: 200px;
+      margin-right: 200px;
+    }
+    @media screen and (max-height: 736px) {
+ #google_translate_element {
+    width: 80px;
+    margin-top: 10px;
+}
+.goog-te-combo{
+    width: 64px;
+    border: outset #0000;
+    font-size: 13px;
+
+  }
+  .goog-te-gadget .goog-te-combo {
+    margin-left: -4px;
+  }
+  .goog-logo-link{
+    text-indent: -9999px;  
+    overflow: hidden; 
+    font-size: 0px!important;
+  }
+  .small, small {
+    font-size: 57%;
+    font-weight: 800;
+}
+.form
+{
+  margin-left: 22px;
+    margin-right: 22px;
+}
+}
+
   </style>
 
 
@@ -53,7 +87,7 @@
 <br><br>
 <h3 style="text-align:center;">Update Loan</h3>
 <div>
-  <form method="post" autocomplete="off" enctype="multipart/form-data" style="margin-left:200px;margin-right:200px;">
+  <form method="post" autocomplete="off" enctype="multipart/form-data" class="form" >
       {% csrf_token %}
         <label for="course_name">Category</label>
       {% render_field loanForm.category class="form-control" placeholder="Life loan" %}

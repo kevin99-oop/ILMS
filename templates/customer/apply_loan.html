@@ -10,6 +10,36 @@
   <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
   <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 </head>
+<style>
+@media screen and (max-height: 736px) {
+  .small, small {
+    font-size: 57%;
+    font-weight: 800;
+}
+}
+
+@media screen and (max-height: 736px) {
+ #google_translate_element {
+    width: 80px;
+    margin-top: 10px;
+}
+.goog-te-combo{
+    width: 64px;
+    border: outset #0000;
+    font-size: 13px;
+
+  }
+  .goog-te-gadget .goog-te-combo {
+    margin-left: -4px;
+  }
+  .goog-logo-link{
+    text-indent: -9999px;  
+    overflow: hidden; 
+    font-size: 0px!important;
+  }
+ 
+ }
+</style>
 
 <div class="container">
  <!-- Page Heading -->
@@ -18,7 +48,7 @@
   <span id='date-time' class="small"></span>
   </div>          
 
-    <table class="table table-hover table-bordered" id="dev-table">
+    <table class="table table-hover table-bordered table-responsive-sm" id="dev-table">
       <thead class="table-info">
         <tr class="text-center">
         <th>Sr No.</th>

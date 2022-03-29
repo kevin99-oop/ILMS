@@ -103,6 +103,9 @@ DATABASES = {'default': {
             'PASSWORD': 'kevin123',
             'HOST': 'kevin-db.cfrbrd29yd94.us-east-1.rds.amazonaws.com',
             'PORT': '3306',
+            'OPTIONS': {
+            'sql_mode': 'traditional',
+        }
            }
         }
 

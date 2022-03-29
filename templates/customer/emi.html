@@ -9,7 +9,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <title>Loan Management System G-15</title>
 
   <!-- Custom fonts for this template-->
@@ -27,7 +27,43 @@
     .main{table-layout:fixed;width:94%;border:0;border-collapse:collapse;margin:0 auto}
     .main td{padding:0 8px;vertical-align:middle;border:0}
     .main input{width:100%;border:1px solid #ccc;margin:2px 0;padding:0 2%;height:22px;text-align:right}.ac{text-align:center}.b{font-weight:bold}
-    .main select{width:100%;border:1px solid #ccc;margin:2px 0;background:#fff;height:22px}.w50{width:50%}.main button{width:100%;font-weight:bold;margin:3px 0}</style>
+    .main select{width:100%;border:1px solid #ccc;margin:2px 0;background:#fff;height:22px}.w50{width:50%}.main button{width:100%;font-weight:bold;margin:3px 0}
+    @media screen and (max-height: 736px) {
+  .card-body 
+  {
+    margin: -20px;
+    padding: 0px;
+  }
+}
+@media screen and (max-height: 736px) {
+  .small, small {
+    font-size: 57%;
+    font-weight: 800;
+}
+}
+
+@media screen and (max-height: 736px) {
+ #google_translate_element {
+    width: 80px;
+    margin-top: 10px;
+}
+.goog-te-combo{
+    width: 64px;
+    border: outset #0000;
+    font-size: 13px;
+
+  }
+  .goog-te-gadget .goog-te-combo {
+    margin-left: -4px;
+  }
+  .goog-logo-link{
+    text-indent: -9999px;  
+    overflow: hidden; 
+    font-size: 0px!important;
+  }
+ 
+ }
+    </style>
 </head>
 
 <body id="page-top">
@@ -35,7 +71,7 @@
   <!-- Page Wrapper -->
   <div id="wrapper">    
     {% include 'customer/customerbase.html' %}
-
+  
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
 
@@ -72,8 +108,8 @@
                   <col class=w50>
                   <col class=w50>
                   <tr>
-                    <td>Loan Amount<td>
-                      <input  class="form-control" type="number" placeholder="Loan Amount" aria-label="Loan Amount example" id="loan1">
+                    <td class="col-5">Loan Amount<td>
+                      <input  class="form-control col-12" type="number" placeholder="Loan Amount" aria-label="Loan Amount example" id="loan1">
                       <tr>
                         <td>Repayment in months<td>
                         <input class="form-control" type="number" placeholder="Repayment in months" aria-label="Repayment in months example" id="months1"><tr>
@@ -144,7 +180,7 @@ new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_el
 </script>
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
-  
+
 </body>
 
 </html>
