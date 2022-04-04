@@ -196,9 +196,3 @@ AXES_ONLY_USER_FAILURES = True
 
 # AXES_LOCKOUT_TEMPLATE = 'template name'
 
-
-CSRF_COOKIE_SECURE = True #to avoid transmitting the CSRF cookie over HTTP accidentally.
-SESSION_COOKIE_SECURE = True #to avoid transmitting the session cookie over HTTP accidentally.
-
-
-
