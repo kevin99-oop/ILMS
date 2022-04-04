@@ -10,7 +10,6 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
-
 import os
 from datetime import timedelta
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -103,9 +102,6 @@ DATABASES = {'default': {
             'PASSWORD': 'kevin123',
             'HOST': 'kevin-db.cfrbrd29yd94.us-east-1.rds.amazonaws.com',
             'PORT': '3306',
-            'OPTIONS': {
-            'sql_mode': 'traditional',
-        }
            }
         }
 
@@ -195,4 +191,6 @@ AXES_COOLOFF_TIME = timedelta(minutes=3)
 AXES_ONLY_USER_FAILURES = True
 
 # AXES_LOCKOUT_TEMPLATE = 'template name'
+
+
 
