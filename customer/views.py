@@ -62,7 +62,7 @@ def apply_view(request,pk):
     customer = models.Customer.objects.get(user_id=request.user.id)
     loan = CMODEL.Loan.objects.get(id=pk)
     loanrecord = CMODEL.LoanRecord()
-    loanrecord.loan = loan
+    loanrecord.Loan = loan
     loanrecord.customer = customer
     loanrecord.save()
     return redirect('history')
