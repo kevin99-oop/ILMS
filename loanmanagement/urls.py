@@ -7,7 +7,7 @@ from django.urls import path,include
 from customer.views import emi, loan, maintenance
 from django.contrib.auth import views as auth_views
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('adminloan/', admin.site.urls),
 
 
     path('customer/',include('customer.urls')),

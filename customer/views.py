@@ -13,7 +13,6 @@ from loan import forms as CFORM
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 
-
 def customerclick_view(request):
     if request.user.is_authenticated:
         return HttpResponseRedirect('afterlogin')
