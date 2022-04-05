@@ -194,8 +194,4 @@ AXES_ONLY_USER_FAILURES = True
 
 
 # AXES_LOCKOUT_TEMPLATE = 'template name'
-SECURE_BROWSER_XSS_FILTER = True # MIME sniffing protection
-SECURE_CONTENT_TYPE_NOSNIFF = True #XSS protection
-SECURE_HSTS_INCLUDE_SUBDOMAINS = True # HSTS implementation
-SECURE_HSTS_SECONDS = 3600 #(i.e 1 hr) HSTS implementation 
-SECURE_SSL_REDIRECT = True
+CSRF_COOKIE_SECURE = True #to avoid transmitting the CSRF cookie over HTTP accidentally.
