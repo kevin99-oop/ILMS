@@ -8,7 +8,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
   <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
   <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <style media="screen">
     a:link {
       text-decoration: none;
@@ -50,6 +50,18 @@
     margin-right: 22px;
 }
 }
+.normalbg
+{
+         background-color: #808080;
+}
+.warningbg
+      {
+         background-color: #00FF00;
+      }
+      .problembg
+      {
+         background-color: #FF0000;
+      }
   </style>
 </head>
 
@@ -68,6 +80,7 @@
           <th>Customer</th>
           <th>Applied Date</th>
           <th>Document</th>
+          <th>credit Score</th>
           <th>Status</th>
           <th>Action</th>
          
@@ -81,6 +94,7 @@
         <td> {{t.customer}}</td>
         <td>{{t.creation_date}}</td>
         <td>{{t.customer.card_text}}</td>   
+        <td  id="EditRecordnote" class="cbFormTextField" value='{{t.customer.credit_score}}'>{{t.customer.credit_score}}</td>   
         <td>{{t.status}}</td>
                     {% if t.status == 'Pending' %}
                 <td>
@@ -102,6 +116,25 @@
 <script>
   var dt = new Date();
   document.getElementById('date-time').innerHTML=dt;
+
+  function f_color(){
+  if (document.getElementById('EditRecordnote').value = '300') {
+  document.getElementById('EditRecordnote').style.color = "red";
+  
+  }
+}
+f_color();
+
+
+var value = parseInt(control.textinput1.getValue());
+      var bgclass = "normalbg";
+      if ( value <= 100) {
+         "normalbg";
+      } else if ( value > 100 && value <= 500 ) {
+         "warningbg";
+      } else if ( value > 500 && value <= 1000 ) {
+         "problembg";
+      }
 </script>
   
 {% endblock content %}

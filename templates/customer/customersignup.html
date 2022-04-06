@@ -75,7 +75,10 @@
                     <input name="profile_pic"   value="dumy value" type="hidden">
                     <input type=file name="file" class="form-control border-0">
                   </div>
-                  
+                  <div class="form-group col-md-12">
+                    <label for="mobile">Credit Score</label>
+                    {% render_field customerForm.credit_score|attr:'required:true'  class="form-control" placeholder="Credit Score" autocomplete="off" %}
+                  </div>
                  
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
