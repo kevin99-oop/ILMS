@@ -101,14 +101,15 @@
         {% render_field userForm.username class="form-control" placeholder="Username" %}
           <label for="password">Password</label>
         {% render_field userForm.password class="form-control" placeholder="Password" %} <br><br>
-        <label for="profile_pic">Profile Picture</label>
-          {% render_field customerForm.profile_pic class="form-control" placeholder="Profile Picture" %}
+        <label for="profile_pic">Document Upload</label>
+          <input name="profile_pic"   value="dumy value" type="hidden">
+          <input type=file name="file" class="form-control border-0">
+          <label for="mobile">Credit Score</label>
+          {% render_field customerForm.credit_score|attr:'required:true'  class="form-control" placeholder="Credit Score" autocomplete="off" %}
 <br><br>
     <input type="submit" value="Update">
   </form>
 </div>
-
-
 
 <br><br><br><br><br><br><br><br>
 {% endblock content %}

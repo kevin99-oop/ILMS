@@ -193,6 +193,5 @@ AXES_COOLOFF_TIME = timedelta(minutes=3)
 
 AXES_ONLY_USER_FAILURES = True
 
-
 # AXES_LOCKOUT_TEMPLATE = 'template name'
 

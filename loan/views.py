@@ -70,12 +70,18 @@ def update_customer_view(request,pk):
     customerForm=CFORM.CustomerForm(request.FILES,instance=customer)
     mydict={'userForm':userForm,'customerForm':customerForm}
     if request.method=='POST':
+        fileName = request.FILES['file']
+        #request.POST['profile_pic'] = "profile_pic/Customer/"+str(fileName)
         userForm=CFORM.CustomerUserForm(request.POST,instance=user)
         customerForm=CFORM.CustomerForm(request.POST,request.FILES,instance=customer)
         if userForm.is_valid() and customerForm.is_valid():
             user=userForm.save()
             user.set_password(user.password)
             user.save()
+            customer.user=user
+            customer.mobile = request.POST['mobile']
+            customer.address = request.POST['address']
+            customer.profile_pic = "profile_pic/Customer/"+str(fileName)
             customerForm.save()
             return redirect('admin-view-customer')
     return render(request,'loan/update_customer.html',context=mydict)
