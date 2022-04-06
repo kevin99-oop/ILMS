@@ -26,6 +26,7 @@
     font-weight: 800;
 }
  }
+
 </style>
 <head>
   <link href="http://netdna.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet">
@@ -39,7 +40,7 @@
     <h1 class="h3 mb-0 text-gray-800">Customers</h1>
     <span id='date-time' class="small"></span>
     </div>
-    <table class="table table-hover table-bordered  table-responsive-sm" id="dev-table">
+    <table class="table table-hover table-bordered  table-responsive-sm " id="dev-table">
       <thead class="table-info">
         <tr class="text-center">
           <th>Sr No.</th>
@@ -47,6 +48,7 @@
           <th>Profile Picture</th>
           <th>Contact</th>
           <th>Address</th>
+          <th>Document Details</th>
           <th>Update</th>
           <th>Delete</th>
         </tr>
@@ -55,9 +57,10 @@
       <tr class="text-center">
         <td> {{t.id}}</td>
         <td> {{t.get_name}}</td>
-        <td> <img src="{% static t.profile_pic.url %}" alt="Profile Pic" height="40px" width="40px" /></td>
+        <td> <img src="{% static t.profile_pic %}" alt="Profile Pic" height="40px" width="40px" /></td>
         <td>{{t.mobile}}</td>
         <td>{{t.address}}</td>
+        <td data-toggle="tooltip" title="{{t.card_text}}">{{t.card_text}}</td>
         
         <td><a class="btn btn-success btn-sm btn-block" href="{% url 'update-customer' t.id  %}"><span class="fa fa-edit"></span></a></td>
         <td><a class="btn btn-danger btn-sm btn-block" href="{% url 'delete-customer' t.id  %}"><span class="fa fa-trash"></span></a></td>

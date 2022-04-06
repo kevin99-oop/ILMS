@@ -21,7 +21,7 @@ urlpatterns = [
     path('admin-dashboard', views.admin_dashboard_view,name='admin-dashboard'),
 
     path('admin-view-customer', views.admin_view_customer_view,name='admin-view-customer'),
-
+    path('customer-view-customer', views.customer_view_customer_view,name='customer-view-customer'), 
     path('update-customer/<int:pk>', views.update_customer_view,name='update-customer'),
     path('delete-customer/<int:pk>', views.delete_customer_view,name='delete-customer'),
 

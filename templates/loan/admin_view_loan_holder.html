@@ -67,16 +67,20 @@
           <th>Loan</th>
           <th>Customer</th>
           <th>Applied Date</th>
+          <th>Document</th>
           <th>Status</th>
           <th>Action</th>
+         
         </tr>
       </thead>
       {% for t in loanrecords %}
+    
       <tr class="text-center">
         <td> {{ forloop.counter }}</td>
         <td> {{t.Loan}}</td>
         <td> {{t.customer}}</td>
         <td>{{t.creation_date}}</td>
+        <td>{{t.customer.card_text}}</td>   
         <td>{{t.status}}</td>
                     {% if t.status == 'Pending' %}
                 <td>
@@ -87,8 +91,10 @@
                 <td>
                 <span style="color:red;font-size:18px;" class="label success">{{t.status}}</span></td>
                 {% endif %}
-      </tr>
       {% endfor %}
+   
+    
+    </tr>
     </table>
   </div>
 </div>

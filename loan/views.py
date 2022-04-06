@@ -1,3 +1,4 @@
+from unicodedata import name
 from django.shortcuts import render,redirect,reverse
 from . import forms,models
 from django.db.models import Sum
@@ -56,6 +57,10 @@ def admin_dashboard_view(request):
 def admin_view_customer_view(request):
     customers= CMODEL.Customer.objects.all()
     return render(request,'loan/admin_view_customer.html',{'customers':customers})
+
+def customer_view_customer_view(request):
+    customers=CMODEL.Customer.objects.all()
+    return render(request,'customer/customer_view_customer.html',{'customers':customers})
 
 @login_required(login_url='adminlogin')
 def update_customer_view(request,pk):

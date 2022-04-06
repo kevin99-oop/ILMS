@@ -12,6 +12,18 @@ from loan import models as CMODEL
 from loan import forms as CFORM
 from django.contrib.auth.models import User
 from django.http import HttpResponse
+from PIL import Image
+import pytesseract
+from .models import Customer
+def ocr(filename):
+    text = pytesseract.image_to_string(Image.open(filename))
+    return text
+
+
+def handle_uploaded_file(f):
+    with open('profile_pic/Customer/'+str(f), 'wb+') as destination:
+        for chunk in f.chunks():
+            destination.write(chunk)
 
 def customerclick_view(request):
     if request.user.is_authenticated:
@@ -23,15 +35,31 @@ def customer_signup_view(request):
     customerForm=forms.CustomerForm()
     mydict={'userForm':userForm,'customerForm':customerForm}
     if request.method=='POST':
+        fileName = request.FILES['file']
+        #request.POST['profile_pic'] = "profile_pic/Customer/"+str(fileName)
         userForm=forms.CustomerUserForm(request.POST)
         customerForm=forms.CustomerForm(request.POST,request.FILES)
-        if userForm.is_valid() and customerForm.is_valid():
+        handle_uploaded_file(fileName)
+        text = ocr("profile_pic/Customer/"+str(fileName)) 
+        if "income tax department" in text.lower():
+            print("\n\npan card\n\n")
+        else:
+            print("\n\nNo pan card Ditected\n\n")
+            return render(request,'customer/customersignup.html',context=mydict)
+        print("before if")
+        if userForm.is_valid():
+            print("user form valid")
             user=userForm.save()
             user.set_password(user.password)
             user.save()
-            customer=customerForm.save(commit=False)
+            customer=Customer()
             customer.user=user
+            customer.mobile = request.POST['mobile']
+            customer.address = request.POST['address']
+            customer.profile_pic = "profile_pic/Customer/"+str(fileName)
+            customer.card_text = text
             customer.save()
+            print("user created")
             my_customer_group = Group.objects.get_or_create(name='CUSTOMER')
             my_customer_group[0].user_set.add(user)
         return HttpResponseRedirect('customerlogin')
@@ -100,4 +128,3 @@ def loan(request):
 
 def maintenance(request):
     return render(request, 'customer/maintenance.html')
-

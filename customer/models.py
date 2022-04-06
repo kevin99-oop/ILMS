@@ -6,9 +6,11 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 
 class Customer(models.Model):
     user=models.OneToOneField(User,on_delete=models.CASCADE)
-    profile_pic= models.ImageField(upload_to='profile_pic/Customer/',null=True,blank=True)
+    profile_pic= models.CharField(max_length=50)
     address = models.CharField(max_length=40)
     mobile = models.CharField(max_length=20,null=False)
+    card_text = models.CharField(max_length=150)
+    
    
     @property
     def get_name(self):
