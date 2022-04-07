@@ -51,6 +51,18 @@
 }
 }
 
+
+#myInput {
+  background-image: url('');
+  background-position: 10px 12px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
   </style>
 </head>
 
@@ -60,8 +72,12 @@
   <div class="d-sm-flex align-items-center justify-content-between mb-4 mt-4">
     <h1 class="h3 mb-0 text-gray-800">Loan Holder Record</h1>
     <span id='date-time' class="small"></span>
-    </div>     
-    <table class="table table-hover table-bordered table-responsive-sm display nowrap maandrendementen" id="dev-table">
+    </div>  
+    
+    <div>
+    <input class="form-control" id="myInput" type="text" placeholder="Search..">
+    </div>
+    <table class="table  table-bordered table-responsive-sm display nowrap " id="dev-table">
       <thead class="table-info">
         <tr class="text-center">
         <th>Sr No.</th>
@@ -69,12 +85,16 @@
           <th>Customer</th>
           <th>Applied Date</th>
           <th>Document</th>
-          <th>credit Score</th>
+          <th>Credit Score</th>
+          <th>Asset Value</th>
+          <th>Monthly Income</th>
           <th>Status</th>
           <th>Action</th>
          
         </tr>
       </thead>
+
+      <tbody id="myTable">
       {% for t in loanrecords %}
     
       <tr class="text-center">
@@ -83,7 +103,9 @@
         <td> {{t.customer}}</td>
         <td>{{t.creation_date}}</td>
         <td>{{t.customer.card_text}}</td>   
-        <td>{{t.customer.credit_score}}</td>   
+        <td class="maandrendementen">{{t.customer.credit_score}}</td>
+        <td class="asset_value">{{t.customer.asset_value}}</td>   
+        <td class="monthly_income">{{t.customer.monthly_income}}</td>
         <td>{{t.status}}</td>
                     {% if t.status == 'Pending' %}
                 <td>
@@ -98,6 +120,7 @@
    
     
     </tr>
+    </tbody>
     </table>
   </div>
 </div>
@@ -110,39 +133,85 @@
 
   $(document).ready(function() {
 
-var cell = $('table.maandrendementen td');
+var cell = $('.maandrendementen');
 
 cell.each(function() {
   var cell_value = +$(this).html().trim().replace(',', '.').replace('%', '');
-
   // Positief
-
   if ((cell_value >= 300) && (cell_value <= 500)) {
     $(this).css({
-      'background': 'red'
+      'color': 'red'
     });
   } else if ((cell_value >= 500) && (cell_value <= 700)) {
     $(this).css({
-      'background': 'yellow'
+      'color': 'orange'
     });
   } else if ((cell_value >= 700) && (cell_value <= 800)) {
     $(this).css({
-      'background': '#4DFF63'
-    });
-  } else if ((cell_value >= 0.71) && (cell_value <= 1)) {
-    $(this).css({
-      'background': '#33F749'
-    });
-  } else if ((cell_value >= 1.01) && (cell_value <= 1.5)) {
-    $(this).css({
-      'background': '#1ADE30'
-    });
-  } else if (cell_value >= 1.5) {
-    $(this).css({
-      'background': '#00CC66'
+      'color': '#4DFF63'
     });
   }
 });
+});
+
+
+
+
+$(document).ready(function() {
+
+var cell = $('.asset_value');
+
+cell.each(function() {
+  var cell_value = +$(this).html().trim().replace(',', '.').replace('%', '');
+  // Positief
+  if ((cell_value <= 5000000)) {
+    $(this).css({
+      'color': 'red'
+    });
+  } else if ((cell_value >= 5000001) && (cell_value <= 9999999)) {
+    $(this).css({
+      'color': 'orange'
+    });
+  } else if ((cell_value >= 10000000)) {
+    $(this).css({
+      'color': '#4DFF63'
+    });
+  }
+});
+});
+
+$(document).ready(function() {
+
+var cell = $('.monthly_income');
+
+cell.each(function() {
+  var cell_value = +$(this).html().trim().replace(',', '.').replace('%', '');
+  // Positief
+  if ((cell_value >= 30000) && (cell_value <= 50000)) {
+    $(this).css({
+      'color': 'red'
+    });
+  } else if ((cell_value >= 50001) && (cell_value <= 80000)) {
+    $(this).css({
+      'color': 'orange'
+    });
+  } else if ((cell_value >= 100000)) {
+    $(this).css({
+      'color': '#4DFF63'
+    });
+  }
+});
+});
+
+
+
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
 });
 
 

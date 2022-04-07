@@ -26,7 +26,20 @@
     font-weight: 800;
 }
  }
+ * {
+  box-sizing: border-box;
+}
 
+#myInput {
+  background-image: url('/css/searchicon.png');
+  background-position: 10px 12px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
 </style>
 <head>
   <link href="http://netdna.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet">
@@ -35,17 +48,20 @@
   <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
   <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <div class="container">
   <div class="d-sm-flex align-items-center justify-content-between mb-4 mt-4">
     <h1 class="h3 mb-0 text-gray-800">Customers</h1>
     <span id='date-time' class="small"></span>
     </div>
+    <input class="form-control" id="myInput" type="text" placeholder="Search..">
     <table class="table table-hover table-bordered  table-responsive-sm " id="dev-table">
       <thead class="table-info">
         <tr class="text-center">
           <th>Sr No.</th>
           <th>Name</th>
-          <th>Profile Picture</th>
+          <th>Document</th>
           <th>Contact</th>
           <th>Address</th>
           <th>Document Details</th>
@@ -53,11 +69,12 @@
           <th>Delete</th>
         </tr>
       </thead>
+      <tbody id="myTable">
       {% for t in customers %}
       <tr class="text-center">
         <td> {{t.id}}</td>
         <td> {{t.get_name}}</td>
-        <td> <img src="{% static t.profile_pic %}" alt="Profile Pic" height="40px" width="40px" /></td>
+        <td> <img src="{% static t.profile_pic %}" alt="Document" height="40px" width="40px" /></td>
         <td>{{t.mobile}}</td>
         <td>{{t.address}}</td>
         <td data-toggle="tooltip" title="{{t.card_text}}">{{t.card_text}}</td>
@@ -66,6 +83,7 @@
         <td><a class="btn btn-danger btn-sm btn-block" href="{% url 'delete-customer' t.id  %}"><span class="fa fa-trash"></span></a></td>
       </tr>
       {% endfor %}
+    </tbody>
     </table>
   </div>
 </div>
@@ -73,5 +91,14 @@
 <script>
   var dt = new Date();
   document.getElementById('date-time').innerHTML=dt;
+
+  $(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
 </script>
 {% endblock content %}

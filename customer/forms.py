@@ -14,4 +14,4 @@ class CustomerUserForm(forms.ModelForm):
 class CustomerForm(forms.ModelForm):
     class Meta:
         model=models.Customer
-        fields=['address','mobile','profile_pic','credit_score']
+        fields=['address','mobile','profile_pic','credit_score','asset_value','monthly_income']

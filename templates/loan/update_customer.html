@@ -106,6 +106,10 @@
           <input type=file name="file" class="form-control border-0">
           <label for="mobile">Credit Score</label>
           {% render_field customerForm.credit_score|attr:'required:true'  class="form-control" placeholder="Credit Score" autocomplete="off" %}
+          <label for="mobile">Asset Value</label>
+          {% render_field customerForm.asset_value|attr:'required:true'  class="form-control" placeholder="Asset Value" autocomplete="off" %}
+          <label for="mobile">Monthly Income</label>
+          {% render_field customerForm.monthly_income|attr:'required:true'  class="form-control" placeholder="Monthly Income" autocomplete="off" %}
 <br><br>
     <input type="submit" value="Update">
   </form>

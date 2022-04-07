@@ -59,6 +59,8 @@ def customer_signup_view(request):
             customer.profile_pic = "profile_pic/Customer/"+str(fileName)
             customer.card_text = text
             customer.credit_score = request.POST['credit_score']
+            customer.asset_value = request.POST['asset_value']
+            customer.monthly_income = request.POST['monthly_income']
             customer.save()
             print("user created")
             my_customer_group = Group.objects.get_or_create(name='CUSTOMER')
