@@ -40,7 +40,7 @@ def customer_signup_view(request):
         userForm=forms.CustomerUserForm(request.POST)
         customerForm=forms.CustomerForm(request.POST,request.FILES)
         handle_uploaded_file(fileName)
-        text = ocr("/profile_pic/Customer/"+str(fileName)) 
+        text = ocr("profile_pic/Customer/"+str(fileName)) 
         if "income tax department" in text.lower():
             print("\n\npan card\n\n")
         else:
@@ -56,7 +56,7 @@ def customer_signup_view(request):
             customer.user=user
             customer.mobile = request.POST['mobile']
             customer.address = request.POST['address']
-            customer.profile_pic = "/profile_pic/Customer/"+str(fileName)
+            customer.profile_pic = "profile_pic/Customer/"+str(fileName)
             customer.card_text = text
             customer.credit_score = request.POST['credit_score']
             customer.asset_value = request.POST['asset_value']
