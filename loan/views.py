@@ -14,18 +14,7 @@ from customer import models as CMODEL
 from customer import forms as CFORM
 
 
-from django.shortcuts import render
-from .forms import ApprovalForm
-from rest_framework import viewsets
-from rest_framework.response import Response
-from rest_framework import status
-from django.contrib import messages
-from .models import Approvals
-from .serializers import approvalsSerializers
-import joblib
-import pandas as pd
-import numpy as np
-import os
+
 
 def home_view(request):
     if request.user.is_authenticated:
@@ -282,72 +271,3 @@ def contactus_view(request):
     return render(request, 'loan/contactus.html', {'form':sub})
 
 
-
-class ApprovalsView(viewsets.ModelViewSet):
-	queryset = Approvals.objects.all()
-	serializer_class = approvalsSerializers
-
-def ohevalue(df):
-	filename = os.getcwd() + "/Trained/allcol.pkl"
-	ohe_col = joblib.load(filename)
-	cat_columns = ['Gender','Married','Education','Self_Employed','Property_Area', 'Dependents']
-	df_processed = pd.get_dummies(df, columns=cat_columns)
-	newdict= {}
-	for i in ohe_col:
-		if i in df_processed.columns:
-			newdict[i] = df_processed[i].values
-		else:
-			newdict[i] = 0
-	newdict['Total_Income_log'] = np.log(int(df_processed['ApplicantIncome'].values) + int(df_processed['CoapplicantIncome'].values))
-	newdict['EMI'] = int(df_processed['LoanAmount'].values) / int(df_processed['Loan_Amount_Term'].values)
-	newdict['Balance Income'] = (int(df_processed['ApplicantIncome'].values) + int(df_processed['CoapplicantIncome'].values))-(newdict['EMI']*1000)
-	newdict['LoanAmount_log']=np.log(int(df_processed['LoanAmount'].values))
-	newdict.pop('LoanAmount')
-	newdict.pop('Loan_Amount_Term')
-	newdict.pop('ApplicantIncome')
-	newdict.pop('CoapplicantIncome')
-	newdf = pd.DataFrame(newdict)
-	return newdf
-#prediction1
-def myform(request):
-	form = ApprovalForm(request.POST or None)
-	context = {
-	"form": form
-	}
-	if form.is_valid():
-		Firstname = form.cleaned_data['firstname']
-		Lastname = form.cleaned_data['lastname']
-		Dependents = form.cleaned_data['Dependents']
-		ApplicantIncome = form.cleaned_data['ApplicantIncome']
-		CoapplicantIncome = form.cleaned_data['CoapplicantIncome']
-		LoanAmount = form.cleaned_data['LoanAmount']
-		Loan_Amount_Term = form.cleaned_data['Loan_Amount_Term']
-		Credit_History = form.cleaned_data['Credit_History']
-		Gender = form.cleaned_data['Gender']
-		Married = form.cleaned_data['Married']
-		Education = form.cleaned_data['Education']
-		Self_Employed = form.cleaned_data['Self_Employed']
-		Property_Area = form.cleaned_data['Property_Area']
-		myDict = (request.POST).dict()
-		df = pd.DataFrame(myDict, index=[0])
-		answer = approvereject(ohevalue(df))
-		messages.success(request, 'Application Status: {}'.format(answer))
-	return render(request, 'loan/prediction.html',context)
-import warnings
-warnings.simplefilter(action='ignore', category=FutureWarning)
-# @api_view(["POST"])
-def approvereject(unit):
-	try:
-		filename = os.getcwd() + "/Trained/model2.pkl"
-		mdl=joblib.load(filename)
-		filename = os.getcwd() + "/Trained/scaler.pkl"
-		scalers=joblib.load(filename)
-		X=scalers.transform(unit)
-		y_pred=mdl.predict(X)
-		print("Predic", y_pred)
-		# y_pred=(y_pred>0.58)
-		newdf=pd.DataFrame(y_pred, columns=['Status'])
-		newdf=newdf.replace({True:'Approved', False:'Rejected'})
-		return ('Your Status is {}'.format(newdf))
-	except ValueError as e:
-		return Response(e.args[0], status.HTTP_400_BAD_REQUEST)
