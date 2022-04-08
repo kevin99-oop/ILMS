@@ -308,7 +308,7 @@ def ohevalue(df):
 	newdict.pop('CoapplicantIncome')
 	newdf = pd.DataFrame(newdict)
 	return newdf
-#prediction
+#prediction1
 def myform(request):
 	form = ApprovalForm(request.POST or None)
 	context = {
