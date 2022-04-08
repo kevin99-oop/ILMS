@@ -88,5 +88,5 @@ urlpatterns = [
     path('emi/', emi ,name='emi'),
     path('loan/', loan ,name='loan'),
     path('maintenance/', maintenance, name='maintenance'),
-    
+    path('myform/', views.myform, name='myform'),
 ]
