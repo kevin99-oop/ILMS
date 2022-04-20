@@ -77,6 +77,9 @@
     <div>
     <input class="form-control" id="myInput" type="text" placeholder="Search..">
     </div>
+    <p>
+      <button onclick="ExportToExcel('xlsx')" class="btn btn-danger">Export To Excel</button>
+      </p>
     <table class="table  table-bordered table-responsive-sm display nowrap " id="dev-table">
       <thead class="table-info">
         <tr class="text-center">
@@ -216,5 +219,14 @@ $(document).ready(function(){
 
 
 </script>
-  
+<script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
+<script>
+  function ExportToExcel(type, fn, dl) {
+       var elt = document.getElementById('dev-table');
+       var wb = XLSX.utils.table_to_book(elt, { sheet: "sheet1" });
+       return dl ?
+         XLSX.write(wb, { bookType: type, bookSST: true, type: 'base64' }):
+         XLSX.writeFile(wb, fn || ('Loan_Holder_Records.' + (type || 'xlsx')));
+    }
+</script>
 {% endblock content %}

@@ -1,4 +1,5 @@
-{% extends 'loan/adminbase.html' %}
+{% extends 'customer/customerbase.html' %}
+
 {% block content %}
 {%load static%}
 
@@ -19,18 +20,43 @@
   <!-- Main Content Here -->
   <div class="row">
     <div class="col-lg-2"></div>
-    {% for t in customers %}
+  
     <div class="col-lg-3 my-5">
-      <img src="{% static t.profile_pic.url %}" alt="Profile Pic" height="300px" width="300px"/>
+      <h4> Document Uploaded</h4>
+      <img src="{% static user.customer.profile_pic %}" alt="Profile Pic" height="300px" width="300px"/>
     </div>
     <div class="card o-hidden border-0 shadow-lg my-5 col-lg-5 ">
     
       <div class="card-body shadow-lg">
-          <h2> Profile Of Customer </h2>
-          <p class="mt-5 mb-5"><strong>Full Name:</strong> {{t.get_name}} </p>
-          <p class="mt-5 mb-5"><strong>Phone Number: </strong> {{t.mobile}}  </p>
-          <p class="mt-5"> <strong>Address: </strong> {{t.address}}</p>
-          {% endfor %}
+        <h2> Profile Of Customer </h2>
+        <div class="row mb-4">
+          <div class="col">
+            <strong>Full Name:</strong> {{user.first_name}} {{user.last_name}}!
+          </div>
+          <div class="col">
+            <strong>Contact: </strong> {{user.customer.mobile}}
+          </div>
+        </div>
+        <div class="row mb-4">
+          <div class="col">
+            <strong>Address: </strong> {{user.customer.address}}
+           </div>
+           <div class="col">
+             <strong>Credit Score: </strong> {{user.customer.credit_score}}
+            </div>
+        </div>
+        <div class="row mb-4">
+          <div class="col">
+            <strong>Asset Value: </strong> {{user.customer.asset_value}}
+           </div>
+           <div class="col">
+            <strong>Date Joined: </strong> {{user.date_joined}}
+            </div>
+        </div>
+
+
+          <p class="mt-5"> </p>
+          <p class="mt-5"> </p>
       </div>
     </div>
   </div>

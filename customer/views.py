@@ -13,7 +13,13 @@ from loan import forms as CFORM
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from PIL import Image
+import pytesseract 
 import pytesseract
+from PIL import ImageEnhance, ImageFilter, Image
+import pytesseract
+
+from PIL import Image
+import os
 from .models import Customer
 def ocr(filename):
     text = pytesseract.image_to_string(Image.open(filename))
