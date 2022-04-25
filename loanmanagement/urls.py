@@ -55,7 +55,7 @@ urlpatterns = [
     path(
         'change-password/',
         auth_views.PasswordChangeView.as_view(
-            template_name='change-password.html',
+            template_name='customer/change-password.html',
             success_url = '/'
         ),
         name='change_password'
@@ -86,7 +86,7 @@ urlpatterns = [
              template_name='common/password-reset/password_reset_complete.html'
          ),
          name='password_reset_complete'),
-         
+
     path('emi/', emi ,name='emi'),
     path('loan/', loan ,name='loan'),
     path('maintenance/', maintenance, name='maintenance'),
