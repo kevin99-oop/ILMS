@@ -1,5 +1,5 @@
-FROM python:3.8-slim-buster
-#FROM ubuntu
+#FROM python:3.8-slim-buster
+FROM ubuntu
 WORKDIR /app-sgn
 RUN apt-get update
 RUN apt-get install -y python3 python3-pip iptables sqlite sqlite3
