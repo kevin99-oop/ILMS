@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
+from distutils.log import debug
 import os
 from datetime import timedelta
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -184,6 +185,7 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'kevinpandya18@gnu.ac.in'
 EMAIL_HOST_PASSWORD = 'JACK@99kevin281099'
 EMAIL_PORT = 587
+
 
 AXES_ENABLED = True
 
